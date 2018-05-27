@@ -1,0 +1,158 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Random;
+
+public class Zoo {
+
+	private Cat cat1;
+
+	private Dog dog1;
+
+	private Fox fox1;
+
+	private Animal animal1;
+	private Animal animal2;
+
+	private Animal[] cages;
+
+	private Collection<Animal> expandingCages;
+
+	public Zoo() {
+
+		cat1 = new Cat("Garfield", 4, 1, false);
+
+		dog1 = new Dog("Scooby Doo", 4, 2, false, "Pitbull");
+
+		animal1 = new Dog("Laika", 7, 7, false, "Doberman");
+		animal2 = new Cat("Silvestre", 7, 7, false);
+
+		cages = new Animal[10];
+
+		//fox1=new Animal("SS", 8, 8, true);
+
+		fox1= new Fox("YLVIS", 4, 2, true);
+
+		expandingCages = new ArrayList<Animal>();
+
+		fillCages();
+
+
+
+		cat1.makeNoise();
+		//animal2.beAnnoying();
+
+		dog1.makeNoise();
+
+		fox1.makeNoise();
+
+		animal1.makeNoise();
+
+
+		System.out.println(cat1.getAnimalName());
+
+		printCollectionWithDept(expandingCages);
+		fillWithRandomDepression(expandingCages);
+		printCollectionWithDept(expandingCages);
+		removeUnhappyFromExpansiveCages(expandingCages);
+		printCollectionWithDept(expandingCages);
+	
+	}
+
+	
+
+	public void addAnimal(Animal animalToAdd)
+	{
+		boolean alreadyAddedTheAnimal=false;
+
+		for (int i = 0; i < cages.length; i++) {
+			if (alreadyAddedTheAnimal== false && cages[i]==null) {
+				cages[i]=animalToAdd;				
+			}
+		}
+	}
+
+	public void clearUnhappyAnimals()
+	{
+		for (int i = 0; i < cages.length; i++) {
+			if(cages[i]!=null)
+			{
+				if(cages[i].isAnimalHappy()==false)
+				{
+					cages[i]=null;
+				}
+			}
+		}
+	}
+
+
+
+
+	//TODO Print animals on collection with the depression level
+
+	public void printCollectionWithDept(Collection<Animal> collectioToPrint) {
+		
+
+
+	}
+	
+	//TODO
+	public void fillWithRandomDepression(Collection<Animal> collectionToFill)
+	{
+		Iterator<Animal> myiteratorr=collectionToFill.iterator();
+		
+		for (;myiteratorr.hasNext();){
+			
+			
+		}
+		
+	}
+	
+	//TODO
+	public void removeUnhappyFromExpansiveCages(Collection<Animal> collectionToRemove)
+	{
+		Iterator<Animal> myiteratorr=collectionToRemove.iterator();
+		
+		for(;myiteratorr.hasNext();){
+			Animal current=myiteratorr.next();
+			if( current.getDepressionLevel()<20){
+				myiteratorr.remove();
+			}
+			
+			
+		}
+	}
+
+	public void printCollection(Collection<Animal> collectioToPrint) {
+
+		Iterator<Animal> theIterator = collectioToPrint.iterator();
+		System.out.println();		
+		System.out.println("---Here Comes The List---");
+
+		for( ;theIterator.hasNext();)
+		{
+			Animal currentAnimal=theIterator.next();
+			System.out.println(currentAnimal.getAnimalName());
+		}
+	}
+	
+	public void fillCages() {
+		expandingCages.add(new Animal("Bulbasaur", 4, 2, false));
+		expandingCages.add(new Animal("Charmander", 4, 2, false));
+		expandingCages.add(new Animal("Squirtle", 4, 2, false));
+		expandingCages.add(new Animal("Pikachu", 4, 2, false));
+		expandingCages.add(new Animal("Alakazam", 4, 2, false));
+		expandingCages.add(new Animal("Gengar", 4, 2, false));
+		expandingCages.add(new Animal("Magikarp", 4, 2, false));
+		expandingCages.add(new Animal("Gyarados", 4, 2, false));
+		expandingCages.add(new Animal("Mewtwo", 4, 2, false));
+	}
+
+	@SuppressWarnings("unused")
+	public static void main(String[] args) {	
+
+		Zoo theZoo=new Zoo();
+	}
+}
