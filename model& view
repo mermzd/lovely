@@ -1,0 +1,428 @@
+package model;
+
+public class Animal {
+	String name;
+	String species;
+	boolean isDangerous;
+	public Animal(String nname, String nspecies, boolean nisDangerous)
+	{
+	name = nname;
+	species = nspecies;
+	isDangerous = nisDangerous;
+	}
+	public String getAnimalName() 
+	{
+		return name;
+		}
+	
+	public void setAnimalName(String nname) 
+	{
+		name = nname;
+	}
+	public void setSpecies(String nspecies) 
+	{
+		species = nspecies;
+	}
+	public void setDangerous(boolean nisDangerous) 
+	{
+		isDangerous = nisDangerous;
+	}
+	public String getSpecies() 
+	{
+		return species;
+		}
+	public boolean getDangerous() 
+	{
+		return isDangerous;
+		}
+}
+
+
+
+
+
+package model;
+
+import java.util.LinkedList;
+
+public class TinyZoo {
+	LinkedList<Animal> cages;
+	public TinyZoo() {
+		cages = new LinkedList<Animal>();
+	}
+	public void AddAnimalToCage(String name, String species, boolean isDangerous) {
+		Animal animalToAdd = new Animal(name,species,isDangerous); 
+		cages.add(animalToAdd);
+		System.out.println(name + " " + species + " " + isDangerous);
+	}
+	public String showName(int lol) {
+		Animal cura = cages.get(lol);
+		return cura.getAnimalName();
+		
+	}
+	public String showSpecies(int lol) {
+		Animal cura = cages.get(lol);
+		return cura.getSpecies();
+		
+	}
+	public boolean showDangerous(int lol) {
+		Animal cura = cages.get(lol);
+		return cura.getDangerous();
+	}
+	public boolean emptyma(int lol) {
+		if(cages.size()<lol || lol<1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public int size() {
+		return cages.size();
+	}
+}
+
+
+
+
+		package view;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import model.TinyZoo;
+
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ButtonGroup;
+import javax.swing.JTextArea;
+
+public class MainWindow {
+	TinyZoo tZoo;
+	private JFrame frame;
+	private JTextField tF1;
+	private int kid = 0;
+	private int dog = 0;
+	private int dragon = 0;
+	private final ButtonGroup bt = new ButtonGroup();
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTextField tF3;
+	private int ch = 0;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainWindow window = new MainWindow();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MainWindow() {
+		tZoo = new TinyZoo();
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 538, 633);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(50, 42, 46, 14);
+		frame.getContentPane().add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setBounds(60, 67, 46, 14);
+		frame.getContentPane().add(label_1);
+		
+		JLabel lblAnimaName = new JLabel("Animal Name");
+		lblAnimaName.setBounds(25, 42, 73, 14);
+		frame.getContentPane().add(lblAnimaName);
+		
+		JLabel lblAnimalSpecies = new JLabel("Animal Species");
+		lblAnimalSpecies.setBounds(323, 0, 73, 14);
+		frame.getContentPane().add(lblAnimalSpecies);
+		
+		JRadioButton Kid = new JRadioButton("Kid");
+		bt.add(Kid);
+		Kid.setBounds(323, 21, 109, 23);
+		frame.getContentPane().add(Kid);
+		
+		JRadioButton Dog = new JRadioButton("Dog");
+		bt.add(Dog);
+		Dog.setBounds(323, 42, 109, 23);
+		frame.getContentPane().add(Dog);
+		
+		JRadioButton Dragon = new JRadioButton("Dragon");
+		bt.add(Dragon);
+		Dragon.setBounds(323, 67, 109, 23);
+		frame.getContentPane().add(Dragon);
+		
+		tF1 = new JTextField();
+		tF1.setBounds(96, 42, 200, 20);
+		frame.getContentPane().add(tF1);
+		tF1.setColumns(10);
+		
+		JLabel lblIsDangerous = new JLabel("Is Dangerous:");
+		lblIsDangerous.setBounds(25, 106, 71, 14);
+		frame.getContentPane().add(lblIsDangerous);
+		
+		JRadioButton Yes = new JRadioButton("Yes");
+		buttonGroup.add(Yes);
+		Yes.setBounds(106, 102, 57, 23);
+		frame.getContentPane().add(Yes);
+		
+		JRadioButton No = new JRadioButton("No");
+		buttonGroup.add(No);
+		No.setBounds(185, 102, 57, 23);
+		frame.getContentPane().add(No);
+		tF3 = new JTextField();
+		tF3.setBounds(156, 176, 57, 20);
+		frame.getContentPane().add(tF3);
+		tF3.setColumns(10);
+		
+		
+		JLabel e1 = new JLabel("ENTAR CAZH NAME");
+		e1.setBounds(50, 179, 96, 14);
+		frame.getContentPane().add(e1);
+		
+		JLabel n1 = new JLabel("NAME:");
+		n1.setBounds(50, 204, 46, 14);
+		frame.getContentPane().add(n1);
+		
+		JLabel s1 = new JLabel("SPACIS:");
+		s1.setBounds(50, 222, 46, 14);
+		frame.getContentPane().add(s1);
+		
+		JLabel d1 = new JLabel("DANZHRIS:");
+		d1.setBounds(39, 237, 57, 14);
+		frame.getContentPane().add(d1);
+		
+		JLabel n2 = new JLabel("New label");
+		n2.setBounds(132, 207, 358, 14);
+		frame.getContentPane().add(n2);
+		
+		JLabel s2 = new JLabel("New label");
+		s2.setBounds(132, 222, 358, 14);
+		frame.getContentPane().add(s2);
+		
+		JLabel d2 = new JLabel("New label");
+		d2.setBounds(132, 237, 358, 14);
+		frame.getContentPane().add(d2);
+		
+		JButton btnShawInfo = new JButton("SHAW INFO");
+		btnShawInfo.setBounds(221, 175, 89, 23);
+		frame.getContentPane().add(btnShawInfo);
+		
+		JLabel no = new JLabel("      ");
+		no.setBounds(334, 179, 145, 14);
+		frame.getContentPane().add(no);
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean dang = false;
+				String h = " ";
+				if(Yes.isSelected()) {
+					dang = true;
+				}
+				if(No.isSelected()) {
+					dang = false;
+				}
+				if(Dog.isSelected()) {
+					h="Dog";
+					dog++;
+				}
+				if(Dragon.isSelected()) {
+					h="Dragon";
+					dragon++;
+				}
+				if(Kid.isSelected()) {
+					h="Kid";
+					kid++;
+				}
+				
+				tZoo.AddAnimalToCage(tF1.getText(), h, dang);
+				String n = tZoo.showName(0);
+				String s = tZoo.showSpecies(0);
+				boolean d = tZoo.showDangerous(0);
+				ch = 0;
+				n2.setText(n);
+				s2.setText(s);
+				d2.setText(String.valueOf(d));
+				tF1.setText(null);
+				buttonGroup.clearSelection();
+				bt.clearSelection();
+			}
+		});
+		btnAdd.setBounds(25, 139, 271, 23);
+		frame.getContentPane().add(btnAdd);
+		
+		
+		
+		
+		btnShawInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(tF3.getText().hashCode()==0) {
+					n2.setText("NO NAME");
+					s2.setText("NO SPECIES");
+					d2.setText("NO DANGER");
+					ch=2;
+				}
+			else {
+				int lol = Integer.parseInt(tF3.getText())-1; 
+				if(tZoo.emptyma(lol+1)==true) {
+					n2.setText(" IT IS EMPTY ^_^");
+					s2.setText("IT IS EMPTY ^_^");
+					d2.setText(", IT IS EMPTY ^_^");
+					ch=2;
+				}
+					else {
+						String n = tZoo.showName(lol);
+						String s = tZoo.showSpecies(lol);
+						boolean d = tZoo.showDangerous(lol);
+						n2.setText(n);
+						s2.setText(s);
+						d2.setText(String.valueOf(d));
+						ch=lol;
+					}
+				}}
+		});
+		JButton button = new JButton("<<");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				no.setText(" ");
+				
+				if(ch-1<0) {
+					no.setText("It is first animal");
+				}
+				else { 
+				ch--;
+				tF3.setText(String.valueOf(ch));
+				String n = tZoo.showName(ch);
+				String s = tZoo.showSpecies(ch);
+				boolean d = tZoo.showDangerous(ch);
+				n2.setText(n);
+				s2.setText(s);
+				d2.setText(String.valueOf(d));
+			}}
+		});
+		button.setBounds(307, 139, 89, 23);
+		frame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton(">>");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				no.setText(" ");
+				if(tZoo.emptyma(ch+2)==true) {
+					no.setText("It is last animal");
+				}
+				else { 
+					ch++;
+					tF3.setText(String.valueOf(ch));
+				String n = tZoo.showName(ch);
+				String s = tZoo.showSpecies(ch);
+				boolean d = tZoo.showDangerous(ch);
+				n2.setText(n);
+				s2.setText(s);
+				d2.setText(String.valueOf(d));
+			}
+			}
+		});
+		button_1.setBounds(401, 139, 89, 23);
+		frame.getContentPane().add(button_1);
+		
+		JButton button_2 = new JButton("0");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ch=0;
+				tF3.setText(String.valueOf(ch));
+				no.setText(" ");
+				String n = tZoo.showName(0);
+				String s = tZoo.showSpecies(0);
+				boolean d = tZoo.showDangerous(0);
+				n2.setText(n);
+				s2.setText(s);
+				d2.setText(String.valueOf(d));
+			}
+		});
+		button_2.setBounds(355, 104, 89, 20);
+		frame.getContentPane().add(button_2);
+	
+		JLabel lblDragonsNamber = new JLabel("DRAGONS NAMBER:");
+		lblDragonsNamber.setBounds(25, 291, 109, 14);
+		frame.getContentPane().add(lblDragonsNamber);
+		
+		JLabel lblDogsNamber = new JLabel("DOGS NAMBER:");
+		lblDogsNamber.setBounds(23, 307, 109, 14);
+		frame.getContentPane().add(lblDogsNamber);
+		
+		JLabel lblKidsNamber = new JLabel("KIDS NAMBER:");
+		lblKidsNamber.setBounds(25, 323, 109, 14);
+		frame.getContentPane().add(lblKidsNamber);
+		
+		JLabel tDR = new JLabel("");
+		tDR.setBounds(130, 291, 145, 14);
+		frame.getContentPane().add(tDR);
+		
+		JLabel tD = new JLabel("");
+		tD.setBounds(130, 307, 145, 14);
+		frame.getContentPane().add(tD);
+		
+		JLabel tK = new JLabel("");
+		tK.setBounds(130, 323, 145, 14);
+		frame.getContentPane().add(tK);
+		
+		JButton btnShawAnimals = new JButton("SHAW ANIMALS");
+		btnShawAnimals.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tDR.setText(String.valueOf(dragon));
+				tD.setText(String.valueOf(dog));
+				tK.setText(String.valueOf(kid));
+			}
+		});
+		btnShawAnimals.setBounds(39, 257, 137, 23);
+		frame.getContentPane().add(btnShawAnimals);
+		
+		JTextArea TA = new JTextArea();
+		TA.setBounds(314, 291, 169, 224);
+		frame.getContentPane().add(TA);
+		
+		
+		JButton btnNewButton = new JButton("SHAW ALL ANIMALS");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i=0;
+				for(;i<tZoo.size();i++) {
+					TA.append(""+ "\n"+tZoo.showName(i)+" "+tZoo.showSpecies(i));
+				}
+			}
+		});
+		btnNewButton.setBounds(323, 257, 160, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+		
+		
+		
+	}
+}
