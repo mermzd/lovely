@@ -1,0 +1,100 @@
+package model;
+
+public class Quadrat {
+	
+	
+	private int[][] bigSquare;
+	
+	//TODO Create the object bigSquare with 4 rows and 8 columns
+	public Quadrat()
+	{
+		bigSquare= new int[4][8];
+	}
+	
+	//TODO
+	public int getNumberOfRows()
+	{
+		return bigSquare.length;
+	}
+	//TODO
+	public int getNumberOfColumns()
+	{
+		return bigSquare[0].length;
+	}
+	//TODO
+	public int getNumberAt(int row,int column)
+	{
+		return bigSquare[row][column];
+	}
+	
+	//TODO fills the last column with the addition of the previous columns
+	public void sumRows()
+	{
+		int sum=0;
+		int number=0;
+		for (int i=0;i<bigSquare.length;i++) {
+			for (int j=0; j<bigSquare[0].length-1;j++) {
+				number=number+1;
+				bigSquare[i][j]=number;
+				sum=bigSquare[i][7];
+				sum=sum+number;;
+				bigSquare[i][7]=sum;
+				
+			}}
+		
+	}
+	
+	//TODO Fill the array with even numbers in ascending order in the even rows and odd in the odd rows, it has to use a loop
+	/*	Example
+	 * 	0  2  4  6  8  10 12 14
+	 * 	1  3  5  7  9  11 13 15
+	 *  16 18 20 22 24 26 28 30
+	 *  17 19 21 23 25 27 29 31
+	 */
+	public void fillWithEvenAndOdd()
+	{
+		int count=0;
+		int even=0;
+		for (int i=0;i<bigSquare.length;i++) {
+			for (int j=0; j<bigSquare[0].length;j++) {
+				
+				if(i%2==0) {
+					count=count+2;
+					bigSquare[i][j]=count-2;
+				}
+			
+				else {even=even+1;
+				bigSquare[i][j]=even;
+
+				}
+				}
+		}
+	}
+	
+	//TODO creates this pattern on the array using a loop
+	/*	Pattern
+	 * 	0 0 0 0 0 0 0 0
+	 *  0 1 1 1 1 1 1 0
+	 *  0 1 1 1 1 1 1 0
+	 *  0 0 0 0 0 0 0 0
+	 */
+	public void doDonut()
+	{
+
+	int temp=0;
+		for (int i=0;i<bigSquare.length;i++) {
+			for (int j=0; j<bigSquare[0].length;j++) {
+				if(j==0 || i==0 || j==bigSquare[0].length-1||i==bigSquare.length-1) {
+				bigSquare[i][j]=0;
+			}
+				else{bigSquare[i][j]=1;
+				}
+	}
+	}}}
+		
+		
+		
+		
+		
+		
+		
